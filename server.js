@@ -33,8 +33,10 @@ app.get("/api/todos", async (req, res) => {
 //добавление задач
 app.post("/api/todos", async (req, res) => {
   try {
-    const {todo, priority, deadline} = req.body;
-    await db.collection(collection_name).insertOne({ todo, priority, deadline });
+    const { todo, description, priority, deadline } = req.body;
+    await db
+      .collection(collection_name)
+      .insertOne({ todo, description, priority, deadline });
     res.json({ message: "Todo added successfully" });
   } catch (error) {
     console.error("Error adding todos: ", error);
